@@ -13,7 +13,7 @@ jobs:
   build-and-test-ubuntu:
     name: Ubuntu
     needs: analysis
-    uses: StudioLE/Actions/.github/workflows/02-build-and-test.yml@main
+    uses: StudioLE/Actions/.github/workflows/02-build-and-test.yml@wip/2023/05/feat-release-output
     with:
       solution: ""
       os: ubuntu-latest
