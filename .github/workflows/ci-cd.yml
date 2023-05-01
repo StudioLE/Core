@@ -7,7 +7,7 @@ jobs:
 
   analysis:
     name: Analysis
-    uses: StudioLE/Actions/.github/workflows/01-analysis.yml@main
+    uses: StudioLE/Actions/.github/workflows/01-analysis.yml@wip/2023/05/feat-release-output
     secrets: inherit
 
   build-and-test-ubuntu:
