@@ -5,39 +5,39 @@ on:
 
 jobs:
 
-  analysis:
-    name: Analysis
-    uses: StudioLE/Actions/.github/workflows/01-analysis.yml@main
+  release:
+    name: Create
+    uses: StudioLE/Actions/.github/workflows/01-semantic-release.yml@wip/2023/05/feat-semantic-release-2
     secrets: inherit
 
   build-and-test-ubuntu:
     name: Ubuntu
-    needs: analysis
+    needs: release
     uses: StudioLE/Actions/.github/workflows/02-build-and-test.yml@main
     with:
       solution: ""
       os: ubuntu-latest
-      version: ${{ needs.analysis.outputs.version }}
+      version: ${{ needs.release.outputs.version }}
     secrets: inherit
 
   build-and-test-windows:
     name: Windows
     if: ${{ contains(fromJSON('["refs/heads/main", "refs/heads/alpha", "refs/heads/beta"]'), github.ref) }}
-    needs: analysis
+    needs: release
     uses: StudioLE/Actions/.github/workflows/02-build-and-test.yml@main
     with:
       solution:  ""
       os: windows-latest
-      version: ${{ needs.analysis.outputs.version }}
+      version: ${{ needs.release.outputs.version }}
     secrets: inherit
 
   publish-nuget:
     name: Publish NuGet
     if: ${{ contains(fromJSON('["refs/heads/main", "refs/heads/alpha", "refs/heads/beta"]'), github.ref) }}
     needs:
-      - analysis
+      - release
       - build-and-test-ubuntu
     uses: StudioLE/Actions/.github/workflows/03-publish-nuget.yml@main
     with:
-      version: ${{ needs.analysis.outputs.version }}
+      version: ${{ needs.release.outputs.version }}
     secrets: inherit
