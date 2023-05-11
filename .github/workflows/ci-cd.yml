@@ -6,7 +6,7 @@ on:
 jobs:
 
   release:
-    name: Create
+    name: Create Release
     uses: StudioLE/Actions/.github/workflows/01-semantic-release.yml@wip/2023/05/feat-semantic-release-2
     secrets: inherit
 
