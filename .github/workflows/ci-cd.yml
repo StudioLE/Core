@@ -84,6 +84,7 @@ jobs:
 
   push-packages-nuget:
     name: NuGet Packages
+    if: ${{ ! contains(needs.release.outputs.version, '-') }}
     needs:
     - release
     uses: StudioLE/Actions/.github/workflows/push-to-nuget.yml@v5
