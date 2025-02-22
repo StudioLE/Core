@@ -19,7 +19,7 @@ jobs:
 
   test-windows:
     name: Windows
-    if: ${{ github.ref_type == 'branch' && contains(fromJSON('["main", "beta", "alpha"]'), github.ref_name) }}
+    if: ${{ github.ref_type == 'branch' && contains(fromJSON('["main", "alpha", "beta", "release"]'), github.ref_name) }}
     uses: StudioLE/Actions/.github/workflows/dotnet-test.yml@v5
     with:
       project: ""
@@ -31,14 +31,14 @@ jobs:
 
   documentation:
     name: Documentation
-    if: ${{ github.ref_type == 'branch' && contains(fromJSON('["main", "beta", "alpha"]'), github.ref_name) }}
+    if: ${{ github.ref_type == 'branch' && contains(fromJSON('["main", "alpha", "beta", "release"]'), github.ref_name) }}
     uses: StudioLE/Actions/.github/workflows/illuminate-generate.yml@v5
     with:
       project: ""
       os: ubuntu-latest
       nuget_feed: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
       nuget_username: ${{ github.repository_owner }}
-      latest: ${{ github.ref_type == 'branch' && contains(fromJSON('["main"]'), github.ref_name) }}
+      latest: ${{ github.ref_type == 'branch' && github.ref_name == 'release' }}
       source: "*/src/bin/Release/*/StudioLE.*.dll"
       section: "core"
     secrets:
@@ -46,7 +46,7 @@ jobs:
 
   release:
     name: Release
-    if: ${{ github.ref_type == 'branch' && contains(fromJSON('["main", "alpha", "beta"]'), github.ref_name) }}
+    if: ${{ github.ref_type == 'branch' && contains(fromJSON('["main", "alpha", "beta", "release"]'), github.ref_name) }}
     needs:
     - test-ubuntu
     uses: StudioLE/Actions/.github/workflows/surveyor-release.yml@v5
@@ -84,6 +84,7 @@ jobs:
 
   push-packages-nuget:
     name: NuGet Packages
+    if: ${{ ! contains(needs.release.outputs.version, '-') }}
     needs:
     - release
     uses: StudioLE/Actions/.github/workflows/push-to-nuget.yml@v5
