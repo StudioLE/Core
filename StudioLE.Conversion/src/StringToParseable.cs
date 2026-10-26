@@ -1,4 +1,3 @@
-#if NET7_0_OR_GREATER
 using StudioLE.Patterns;
 
 namespace StudioLE.Conversion;
@@ -24,4 +23,3 @@ public class StringToParseable<TStruct> : IConverter<string, TStruct?> where TSt
             : null;
     }
 }
-#endif

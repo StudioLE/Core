@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
     <Description>A library of helper methods and extensions for primitives and the `System` namespace.</Description>
   </PropertyGroup>
 

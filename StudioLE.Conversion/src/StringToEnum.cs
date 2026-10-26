@@ -2,7 +2,6 @@ using StudioLE.Patterns;
 
 namespace StudioLE.Conversion;
 
-#if ! NETSTANDARD2_0
 /// <inheritdoc />
 public class StringToEnum : IConverter<string, Enum?>
 {
@@ -24,7 +23,6 @@ public class StringToEnum : IConverter<string, Enum?>
             : null;
     }
 }
-#endif
 
 /// <inheritdoc />
 public class StringToEnum<TEnum> : IConverter<string, TEnum?> where TEnum : struct, Enum

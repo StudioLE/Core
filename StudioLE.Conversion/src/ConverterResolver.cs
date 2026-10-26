@@ -82,9 +82,7 @@ public class ConverterResolver
     public static ConverterResolver Default()
     {
         return new ConverterResolverBuilder()
-#if !NETSTANDARD2_0
             .Register<string, Enum?, StringToEnum>()
-#endif
             .Register<string, int?, StringToInteger>()
             .Register<string, double?, StringToDouble>()
             .Register<string, string?, StringToString>()

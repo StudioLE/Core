@@ -78,9 +78,7 @@ public class Parser : IParser
     {
         return new Dictionary<Type, Func<string, Type, object?>>
         {
-#if NETSTANDARD2_1_OR_GREATER
             { typeof(Enum), (s, t) => Enum.TryParse(t, s, out object? e) ? e : null }
-#endif
         };
     }
 }

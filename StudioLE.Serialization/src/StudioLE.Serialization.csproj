@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <Description>A library providing a standardized approach to parsing and serialization via ISerializer, IDeserializer, and IParser abstractions. Also includes logic to deeply interrogate the composition and properties of any object as a composite ObjectTree.</Description>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <!-- Use consistent properties across all projects -->
@@ -10,9 +9,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\StudioLE.Serialization.Abstractions\src\StudioLE.Serialization.Abstractions.csproj"/>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0"/>
   </ItemGroup>
 </Project>
